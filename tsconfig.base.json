@@ -38,6 +38,9 @@
       ],
       "@flight-demo/domain/booking-api-boarding": [
         "./libs/domain/booking/src/lib/api-boarding/api.ts"
+      ],
+      "@flight-demo/domain/luggage": [
+        "./libs/domain/luggage/src/index.ts"
       ]
     }
   },

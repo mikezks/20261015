@@ -24,6 +24,7 @@ export const APP_ROUTES: Routes = [
     path: 'boarding',
     loadChildren: () => import('@flight-demo/domain/boarding')
   },
+  { path: 'luggage', loadChildren: () => import('@flight-demo/domain/luggage') },
   {
     path: '**',
     redirectTo: 'home'
