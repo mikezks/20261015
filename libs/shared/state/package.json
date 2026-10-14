@@ -1,0 +1,11 @@
+{
+  "name": "@flight-demo/shared/state",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/core": "^22.1.0",
+    "@ngrx/router-store": "^22.0.1",
+    "@ngrx/store": "^22.0.1"
+  },
+  "sideEffects": false,
+  "private": true
+}

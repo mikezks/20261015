@@ -1,0 +1,11 @@
+{
+  "name": "@flight-demo/shared/navigation",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^22.1.0",
+    "@angular/core": "^22.1.0",
+    "@angular/router": "~22.2.2"
+  },
+  "sideEffects": false,
+  "private": true
+}
