@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, numberAttribute } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { switchMap } from 'rxjs';
+import { RouterLink } from '@angular/router';
 import { PassengerService } from '../../logic-passenger/data-access/passenger.service';
-import { initialPassenger } from '../../logic-passenger/model/passenger';
 import { validatePassengerStatus } from '../../util-validation/passenger-validator/passenger-status.validator';
 
 
@@ -12,7 +10,8 @@ import { validatePassengerStatus } from '../../util-validation/passenger-validat
   changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-passenger-edit',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './passenger-edit.component.html'
 })
@@ -29,16 +28,14 @@ export class PassengerEditComponent {
   });
 
   protected id = input(0, { transform: numberAttribute });
-  protected passenger = toSignal(
-    toObservable(this.id).pipe(
-      switchMap(id => this.passengerService.findById(id))
-    ), { initialValue: initialPassenger }
-  );
+  protected passengerResource = this.passengerService.findByIdAsResource(this.id);
 
   constructor() {
-    effect(
-      () => this.editForm.patchValue(this.passenger())
-    );
+    effect(() => {
+      if (this.passengerResource.hasValue()) {
+        this.editForm.patchValue(this.passengerResource.value());
+      }
+    });
   }
 
   protected save(): void {
