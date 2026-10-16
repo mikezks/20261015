@@ -36,27 +36,12 @@ export class FlightSearchComponent {
     5: true
   };
   protected flights$ = this.ticketsFacade.flights$;
-  firstname = 'Peter';
 
   constructor() {
-    // let activeConsumer: ReactiveNode | null = null;
-    // activeConsumer = effect(() => console.log(this.route()));
-
-    // Signal Trigger
     effect(() => {
       this.filter();
       untracked(() => this.search());
     });
-
-    // console.log(this.route[SIGNAL]);
-
-    console.log(this.firstname);
-
-    setTimeout(() => {
-      this.firstname = 'Mary';
-      this.cdRef.markForCheck();
-      console.log(this.firstname);
-    }, 5_000);
   }
 
   protected search(): void {

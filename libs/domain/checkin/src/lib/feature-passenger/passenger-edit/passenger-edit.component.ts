@@ -32,15 +32,18 @@ export class PassengerEditComponent {
   });
 
   readonly id = input(0, { transform: numberAttribute });
-  private readonly passenger = signalOperators(this.id, pipe(
-    switchMap(id => this.passengerService.findById(id))
-  ), initialPassenger);
+  protected readonly passengerResource = this.passengerService.findByIdAsResource(this.id);
 
   constructor() {
-    effect(() => this.editForm.patchValue(this.passenger()));
+    effect(() => {
+      if (this.passengerResource.hasValue()) {
+        this.editForm.patchValue(this.passengerResource.value())
+      }
+    });
   }
 
   protected save(): void {
     console.log(this.editForm.value);
+    this.passengerResource.set(this.editForm.getRawValue());
   }
 }
