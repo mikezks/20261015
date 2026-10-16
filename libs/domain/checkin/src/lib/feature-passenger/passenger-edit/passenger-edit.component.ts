@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, effect, inject, input, numberAttribute } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { signalOperators } from '@flight-demo/shared/core';
-import { validatePassengerStatus } from '../../util-validation/passenger-validator/passenger-status.validator';
-import { PassengerService } from '../../logic-passenger/data-access/passenger.service';
 import { pipe, switchMap } from 'rxjs';
+import { PassengerService } from '../../logic-passenger/data-access/passenger.service';
 import { initialPassenger } from '../../logic-passenger/model/passenger';
+import { validatePassengerStatus } from '../../util-validation/passenger-validator/passenger-status.validator';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -13,7 +13,8 @@ import { initialPassenger } from '../../logic-passenger/model/passenger';
   changeDetection: ChangeDetectionStrategy.Eager,
   selector: 'app-passenger-edit',
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './passenger-edit.component.html'
 })
