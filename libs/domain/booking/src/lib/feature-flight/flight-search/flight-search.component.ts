@@ -37,13 +37,16 @@ export class FlightSearchComponent {
   protected flights$ = this.ticketsFacade.flights$;
 
   constructor() {
-    effect(() => console.log(this.route()));
+    // let activeConsumer: ReactiveNode | null = null;
+    // activeConsumer = effect(() => console.log(this.route()));
 
     // Signal Trigger
     effect(() => {
       this.filter();
       untracked(() => this.search());
     });
+
+    // console.log(this.route[SIGNAL]);
   }
 
   protected search(): void {
